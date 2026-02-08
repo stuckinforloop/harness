@@ -1,15 +1,4 @@
 node_modules/
-dist/
 .DS_Store
 *.log
-
-# Research artifacts (temporary)
 research_*/
-
-# Git submodule contents (populated via `pnpm run start`)
-sources/*/
-vendor/*/
-
-# Keep the directories themselves
-!sources/.gitkeep
-!vendor/.gitkeep
