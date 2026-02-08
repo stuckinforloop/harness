@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "npx @vercel/agent-eval",
+    "eval:dry": "npx @vercel/agent-eval --dry",
+    "eval:baseline": "npx @vercel/agent-eval baseline",
+    "eval:with-go-write": "npx @vercel/agent-eval with-go-write",
+    "eval:playground": "npx @vercel/agent-eval playground"
+  },
+  "devDependencies": {
+    "@vercel/agent-eval": "^0.3.1"
+  }
+}
