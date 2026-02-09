@@ -23,6 +23,7 @@ npx skills add stuckinforloop/harness --skill='go'
 | `stuckinforloop` | Personal preferences, workflows, and conventions |
 | `go` | Writing, testing, debugging, and reviewing Go code |
 | `go-style` | Uber Go Style Guide conventions for error handling, concurrency, interfaces, naming, and code organization |
+| `ast-grep` | Structural code assertions for EVAL.ts using AST patterns instead of regex |
 
 ## License
 

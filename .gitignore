@@ -3,3 +3,7 @@ node_modules/
 *.log
 research_*/
 .vscode/
+results/
+.env
+.env.local
+dist/

@@ -55,6 +55,15 @@ Checklists and anti-patterns for reviewing Go code. Key checks:
 - **Testing**: Flag non-table-driven tests, `assert` for preconditions, >10 case tables. Check `goleak`.
 - **Options**: Flag exported options struct, missing defaults, mixed options + param objects.
 
+### ast-grep
+
+Structural code assertions for EVAL.ts using AST patterns. Key rules:
+
+- **Integration**: `sg run -p 'pattern' --lang go --json` for simple checks. `sg scan --inline-rules '...' --json` for relational rules. Parse JSON, assert with vitest.
+- **Patterns**: `$VAR` single node, `$$$` multi-node, `$_` wildcard. Same `$VAR` = equality. `UPPER_SNAKE_CASE` only.
+- **Rules**: `kind` + `has`/`inside` (always `stopBy: end`) for structural checks. `all`/`any`/`not` for composition. At least one positive rule required.
+- **Preference**: Use ast-grep when checks need context-awareness (inside/outside scope), structural precision (method counts, field presence), or comment/string immunity. Keep regex for trivial text presence.
+
 ### go-lib-design
 
 Designing Go libraries for long-term evolution. Key rules:
