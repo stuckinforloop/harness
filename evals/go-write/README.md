@@ -11,6 +11,7 @@ Evaluation suite for the `go-write` skill. Tests whether the skill improves agen
 | 03 | concurrency | WaitGroup lifecycle, context cancel, channel sizing | `wg.Add` before `go`, `defer wg.Done()`, `select` + `ctx.Done()`, channel buffer ≤ 1, clean exit |
 | 04 | safety-patterns | Two-value assertions, defensive copies, no panic in libs | `v, ok :=` assertions, `copy()`/`make()`, no `panic`/`os.Exit` outside main, compile-time checks, JSON tags |
 | 05 | functional-options | Option interface, WithX constructors, unexported options | `Option` interface + `apply(*options)`, `WithX` constructors, unexported `options` struct, defaults + range loop |
+| 06 | logging | Structured logging with `log/slog` | No `fmt.Println`/`log.Printf`, typed slog attributes, `*slog.Logger` as dependency, no `fmt.Sprintf` in slog args, no `slog.New` per request |
 
 ## Running
 
@@ -38,7 +39,7 @@ Both use `model: 'sonnet'`, `runs: 3`, `sandbox: 'docker'`, with Go 1.24 install
 ## Assertion Layers
 
 1. **Deterministic** — `go build ./...` and `go vet ./...` must pass. Zero ambiguity.
-2. **Pattern checks** — Regex against generated Go source. Fast, repeatable, no LLM cost.
+2. **Pattern checks** — Regex or ast-grep against generated Go source. Fast, repeatable, no LLM cost.
 
 No LLM rubric is needed — all Go conventions map to mechanically verifiable patterns.
 
@@ -51,3 +52,4 @@ No LLM rubric is needed — all Go conventions map to mechanically verifiable pa
 | 03-concurrency | — | — | — |
 | 04-safety-patterns | — | — | — |
 | 05-functional-options | — | — | — |
+| 06-logging | — | — | — |
