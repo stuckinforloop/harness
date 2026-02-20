@@ -63,3 +63,14 @@ Designing Go libraries for long-term evolution. Key rules:
 - **Surface area**: Use `internal/` for non-public code. No global state — use struct methods. Return zero values on error. Clone slices/maps at boundaries. Make outputs deterministic.
 - **Dependencies**: Accept don't instantiate. Accept interfaces, return structs. Declare your own interfaces for types you don't own. Provide convenience constructors as thin wrappers.
 - **Evolution**: Param objects for required fields or many options. Functional options for optional-only params. Never mix both. Result objects for growing returns. Extend interfaces via upcasting + fallback.
+
+### github-sprint
+
+AI Scrum Master translating Beads philosophy to GitHub native features with AI-native 3-day sprints. Key rules:
+
+- **AI-native sprints**: 14 human-days → 3 AI-days. Fixed sprint duration. Epics always scoped to 14 human-days. Milestones fixed at 3 days.
+- **3-agent parallelization**: Dependency analysis identifies parallel work. Tasks labeled `agents:solo` (1 agent), `agents:pair` (2 agents), `agents:swarm` (3 agents all-hands).
+- **Demo-driven breakdown**: Every epic produces demo. Day 1: parallel foundation work. Day 2: integration. Day 3: demo prep and testing.
+- **Dependencies drive assignments**: `Blocked by: #X` in body. Analyze graph for parallelization. Solo = no deps. Pair = complex integration. Swarm = final integration.
+- **Ticket templates**: `[Day X]` in title. Imperative verb. Acceptance criteria = demo script steps. Labels: priority, type, status, agent assignment.
+- **Workflows**: `decompose` analyzes epic and suggests 3-day breakdown with agent assignments. `ready` shows work by agent capacity. `status` tracks demo progress.
