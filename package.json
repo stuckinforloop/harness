@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "npx @vercel/agent-eval",
+    "eval:dry": "npx @vercel/agent-eval --dry",
+    "eval:baseline": "npx @vercel/agent-eval baseline",
+    "eval:with-go-write": "npx @vercel/agent-eval with-go-write",
+    "eval:with-ast-grep": "npx @vercel/agent-eval with-ast-grep",
+    "eval:playground": "npx @vercel/agent-eval playground",
+    "eval:sdk": "npx tsx evals/lib/runner.ts",
+    "eval:sdk:go-write": "npx tsx evals/lib/runner.ts --experiment with-go-write-sdk",
+    "eval:sdk:ast-grep": "npx tsx evals/lib/runner.ts --experiment with-ast-grep-sdk"
+  },
+  "devDependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.2.37",
+    "@vercel/agent-eval": "^0.3.1"
+  }
+}
