@@ -1,0 +1,68 @@
+# Compound Documentation Schema
+# Defines the YAML frontmatter structure for docs/solutions/ files
+
+solution:
+  # Required fields
+  title:
+    type: string
+    description: Short, descriptive title of the problem/solution
+    example: "Goroutine leak in HTTP handler middleware"
+
+  problem_type:
+    type: enum
+    values:
+      - concurrency-bug
+      - error-handling
+      - interface-design
+      - performance
+      - api-design
+      - dependency
+      - testing
+      - security
+    description: Category of the problem
+
+  severity:
+    type: enum
+    values:
+      - critical    # Production outage, data loss, security breach
+      - high        # Major bug, significant performance issue
+      - medium      # Design flaw, maintainability concern
+      - low         # Minor issue, style improvement
+    description: Impact level of the problem
+
+  components:
+    type: list[string]
+    description: Go packages and files affected
+    example:
+      - "internal/auth/middleware.go"
+      - "pkg/worker/pool.go"
+
+  root_cause:
+    type: string
+    description: One-line root cause explanation
+    example: "Fire-and-forget goroutine without stop signal or context cancellation"
+
+  # Optional fields
+  tags:
+    type: list[string]
+    description: Go concepts for searchability
+    example:
+      - goroutine
+      - context
+      - middleware
+      - leak
+
+  date:
+    type: string
+    format: YYYY-MM-DD
+    description: When the solution was documented
+
+  related:
+    type: list[string]
+    description: Paths to related solution files
+    example:
+      - "docs/solutions/concurrency-bug/worker-pool-shutdown.md"
+
+  pr:
+    type: string
+    description: GitHub PR URL where the fix was implemented

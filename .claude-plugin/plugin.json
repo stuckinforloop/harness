@@ -1,0 +1,8 @@
+{
+  "name": "compound-engineering",
+  "version": "0.1.0",
+  "description": "Compound engineering workflow for Go projects. Plan -> Work -> Review -> Compound loop backed by OpenSpec.",
+  "commands": "commands",
+  "agents": "agents",
+  "skills": "skills"
+}

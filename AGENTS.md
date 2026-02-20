@@ -74,3 +74,21 @@ AI Scrum Master translating Beads philosophy to GitHub native features with AI-n
 - **Dependencies drive assignments**: `Blocked by: #X` in body. Analyze graph for parallelization. Solo = no deps. Pair = complex integration. Swarm = final integration.
 - **Ticket templates**: `[Day X]` in title. Imperative verb. Acceptance criteria = demo script steps. Labels: priority, type, status, agent assignment.
 - **Workflows**: `decompose` analyzes epic and suggests 3-day breakdown with agent assignments. `ready` shows work by agent capacity. `status` tracks demo progress.
+
+### compound-docs
+
+Document solved Go problems as reusable solution files in `docs/solutions/`. Key rules:
+
+- **Process**: 7 steps — identify problem, classify root cause, identify components, document bad pattern, document fix, extract rule, write solution file.
+- **Schema**: YAML frontmatter with `title`, `problem_type`, `severity`, `components`, `root_cause`, `tags`. Problem types: `concurrency-bug`, `error-handling`, `interface-design`, `performance`, `api-design`, `dependency`, `testing`, `security`.
+- **File path**: `docs/solutions/<problem-type>/<slug>.md`. Kebab-case slug. Body: Problem → Bad Pattern → Fix → Why → Rule → References.
+
+### openspec-go
+
+Go-specific conventions for writing OpenSpec specifications. Key rules:
+
+- **Components**: Use Go package paths (`internal/api/handler`, `pkg/worker`) as component identifiers.
+- **Requirements**: Include input validation, response codes, context handling, error behavior for every API spec.
+- **Concurrency specs**: Always specify lifecycle (start, stop, cancel), bounds, and error collection for concurrent components.
+- **Error specs**: Specify wrapping chain, sentinel errors, and handle-once rule.
+- **Scenarios**: Cover graceful shutdown, context cancellation, and error propagation as first-class spec topics.
