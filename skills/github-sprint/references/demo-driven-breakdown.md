@@ -142,9 +142,9 @@ done
 ### Demo-First Task Template
 
 ```markdown
-**Title**: Checkout payment flow [Day 2]
+**Title**: Checkout payment flow
 
-**Labels**: type:story, priority:high, agents:pair
+**Labels**: type:story, priority:high, agents:pair, phase:2
 
 **Description**:
 User needs to complete payment during checkout. This task implements the UI and API integration for credit card processing. Required for demo: user can enter card details and see confirmation.
@@ -170,9 +170,9 @@ Blocks: #307 (E2E test)
 ### Day 3 Integration Checklist
 
 ```markdown
-**Title**: E2E checkout integration and demo prep [Day 3]
+**Title**: E2E checkout integration and demo prep
 
-**Labels**: type:task, priority:critical, agents:swarm
+**Labels**: type:task, priority:critical, agents:swarm, phase:3
 
 **Description**:
 Final integration day: connect all components, run end-to-end tests, prepare demo environment and script. All 3 agents collaborate to ensure demo is smooth.

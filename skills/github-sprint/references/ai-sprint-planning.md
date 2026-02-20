@@ -140,12 +140,12 @@ gh issue edit 107 --add-label "agents:swarm"
 **Demo Goal**: User can add items to cart and complete purchase
 
 **Critical Path (Must-Have for Demo)**:
-1. #201: Product catalog API [Day 1, SOLO]
-2. #202: Shopping cart service [Day 1, SOLO]
-3. #203: Checkout UI [Day 2, PAIR] (blocks: #201, #202)
-4. #204: Payment integration [Day 2, PAIR] (blocks: #202)
-5. #205: Order confirmation [Day 2, SOLO] (blocks: #204)
-6. #206: E2E checkout test [Day 3, SWARM] (blocks: all)
+1. #201: Product catalog API — labels: agents:solo, phase:1
+2. #202: Shopping cart service — labels: agents:solo, phase:1
+3. #203: Checkout UI — labels: agents:pair, phase:2 (blocked by: #201, #202)
+4. #204: Payment integration — labels: agents:pair, phase:2 (blocked by: #202)
+5. #205: Order confirmation — labels: agents:solo, phase:2 (blocked by: #204)
+6. #206: E2E checkout test — labels: agents:swarm, phase:3 (blocked by: all)
 
 **Nice-to-Have (Post-Demo)**:
 - #207: Discount codes [Backlog]
@@ -185,26 +185,26 @@ echo "✓ Created Sprint $SPRINT_NUMBER: $START_DATE to $(date -v+3d -u +%Y-%m-%
 
 MILESTONE="Sprint 5"
 
-echo "Day 1 - Parallel Capacity:"
+echo "Phase 1 - Parallel Capacity:"
 gh issue list \
   --milestone "$MILESTONE" \
-  --label "agents:solo" \
-  --json number,title \
-  --jq '.[] | select(.title | contains("[Day 1]")) | "  Agent: #\(.number) - \(.title)"'
-
-echo
-echo "Day 2 - Mixed Work:"
-gh issue list \
-  --milestone "$MILESTONE" \
+  --label "phase:1" \
   --json number,title,labels \
-  --jq '.[] | select(.title | contains("[Day 2]")) |
-    "  \(if [.labels[].name] | inside(["agents:pair"]) then "PAIR" else "SOLO" end): #\(.number) - \(.title)"'
+  --jq '.[] | "  \(if [.labels[].name] | inside(["agents:pair"]) then "PAIR" elif [.labels[].name] | inside(["agents:swarm"]) then "SWARM" else "SOLO" end): #\(.number) - \(.title)"'
 
 echo
-echo "Day 3 - Integration:"
+echo "Phase 2 - Integration Work:"
 gh issue list \
   --milestone "$MILESTONE" \
-  --label "agents:swarm" \
+  --label "phase:2" \
+  --json number,title,labels \
+  --jq '.[] | "  \(if [.labels[].name] | inside(["agents:pair"]) then "PAIR" elif [.labels[].name] | inside(["agents:swarm"]) then "SWARM" else "SOLO" end): #\(.number) - \(.title)"'
+
+echo
+echo "Phase 3 - Demo Prep:"
+gh issue list \
+  --milestone "$MILESTONE" \
+  --label "phase:3" \
   --json number,title \
   --template '  SWARM: {{range .}}#{{.number}} - {{.title}}{{"\n"}}{{end}}'
 ```
@@ -246,7 +246,7 @@ echo "3. Label tasks: agents:solo, agents:pair, or agents:swarm"
 echo "4. Assign to Sprint $SPRINT_NUMBER milestone"
 echo
 echo "Example task structure:"
-echo "  gh issue create --title 'Task name [Day 1]' --body 'Blocks: #$EPIC_NUMBER' --label 'type:task,agents:solo'"
+echo "  gh issue create --title 'Task name' --body 'Blocks: #$EPIC_NUMBER' --label 'type:task,agents:solo,phase:1'"
 ```
 
 ## Checklist
@@ -254,9 +254,9 @@ echo "  gh issue create --title 'Task name [Day 1]' --body 'Blocks: #$EPIC_NUMBE
 - [ ] Epic scoped to 14 human-days
 - [ ] AI sprint milestone set to 3 days
 - [ ] Dependency graph analyzed for parallel work
-- [ ] Day 1 tasks have no blockers (parallel execution)
-- [ ] Day 2 tasks depend on Day 1 completion
-- [ ] Day 3 reserved for integration and demo prep
+- [ ] Phase 1 tasks have no blockers (parallel execution), labeled `phase:1`
+- [ ] Phase 2 tasks depend on phase 1 completion, labeled `phase:2`
+- [ ] Phase 3 reserved for integration and demo prep, labeled `phase:3`
 - [ ] Agent assignments labeled: solo/pair/swarm
 - [ ] Solo tasks assigned to independent agents
 - [ ] Pair tasks assigned to 2-agent teams

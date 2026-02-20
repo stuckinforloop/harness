@@ -60,7 +60,7 @@ Do NOT apply when:
 
 **Decompose**: Define demo goal → analyze dependencies → assign Day 1 (parallel), Day 2 (integration), Day 3 (demo) → label `agents:solo/pair/swarm`.
 
-**Create**: Use ticket template → add `[Day X]` to title → assign labels → link dependencies → milestone.
+**Create**: Use ticket template → assign labels (including `phase:1/2/3`) → link dependencies → milestone.
 
 **Ready**: Filter by milestone, no `status:blocked`, group by agent assignment (solo/pair/swarm).
 

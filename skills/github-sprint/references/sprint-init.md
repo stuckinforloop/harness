@@ -41,6 +41,11 @@ gh label create "carryover" --color "CCCCCC" --description "Moved from previous 
 gh label create "agents:solo" --color "0E8A16" --description "1 agent - independent work" --force
 gh label create "agents:pair" --color "FBCA04" --description "2 agents - collaboration" --force
 gh label create "agents:swarm" --color "B60205" --description "3 agents - all hands" --force
+
+# Create phase labels (sprint phases for AI sprints)
+gh label create "phase:1" --color "BFD4F2" --description "Phase 1 - parallel foundation work" --force
+gh label create "phase:2" --color "D4C5F9" --description "Phase 2 - integration work" --force
+gh label create "phase:3" --color "F9D0C4" --description "Phase 3 - demo prep and testing" --force
 ```
 
 ### Project Board Creation
@@ -138,6 +143,9 @@ gh label create "carryover" --color "CCCCCC" --force 2>/dev/null || true
 gh label create "agents:solo" --color "0E8A16" --force 2>/dev/null || true
 gh label create "agents:pair" --color "FBCA04" --force 2>/dev/null || true
 gh label create "agents:swarm" --color "B60205" --force 2>/dev/null || true
+gh label create "phase:1" --color "BFD4F2" --force 2>/dev/null || true
+gh label create "phase:2" --color "D4C5F9" --force 2>/dev/null || true
+gh label create "phase:3" --color "F9D0C4" --force 2>/dev/null || true
 
 # 2. Create project board (skip if exists)
 if ! gh project list --format json | jq -e '.projects[] | select(.title == "Sprint Board")' >/dev/null 2>&1; then
@@ -165,6 +173,7 @@ echo "✓ Initialization complete"
 - [ ] All status labels created (blocked, ready, in-progress, in-review)
 - [ ] Management labels created (carryover)
 - [ ] Agent assignment labels created (agents:solo, agents:pair, agents:swarm)
+- [ ] Phase labels created (phase:1, phase:2, phase:3)
 - [ ] Sprint Board project exists
 - [ ] Story Points field added to project
 - [ ] Iteration field added to project
